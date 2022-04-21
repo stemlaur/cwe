@@ -1,10 +1,16 @@
 package com.stemlaur.security;
 
+import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestFactory;
+
+import java.util.stream.Stream;
 
 import static com.stemlaur.security.DataSet.validUser;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 class LoginTest {
 
@@ -34,19 +40,22 @@ class LoginTest {
                 .hasMessage("login length must be between 3 and 20 chars");
     }
 
-    @Test
-    void shouldFailWithMaliciousInput() {
-        assertInstantiationFails("'or%20select *");
-        assertInstantiationFails("admin'--");
-        assertInstantiationFails("<>\"'%;)(&+");
-        assertInstantiationFails("0 or 1=1 --");
-        assertInstantiationFails("<script");
-        assertInstantiationFails("</script>");
-    }
-
-    private void assertInstantiationFails(String input) {
-        assertThatThrownBy(() -> new Login(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Illegal login format, expecting only letters");
+    @TestFactory
+    Stream<DynamicTest> shouldFailWithMaliciousInput() {
+        return Stream.of(
+                        "'or%20select *",
+                        "admin'--",
+                        "<>\"'%;)(&+",
+                        "'%20or%20''='",
+                        "'%20or%20'x'='x",
+                        "\"%20or%20\"x\"=\"x",
+                        "')%20or%20('x'='x",
+                        "0 or 1=1 --",
+                        "' or 0=0 --",
+                        "\" or 0=0 --",
+                        "<script",
+                        "</script>"
+                )
+                .map(input -> dynamicTest("ShouldFailWithMaliciousInput: " + input, () -> assertThrows(RuntimeException.class, () -> new Login(input))));
     }
 }
