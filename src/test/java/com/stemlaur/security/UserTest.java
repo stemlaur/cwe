@@ -11,16 +11,16 @@ class UserTest {
         User user = new User("stemlaur", "myweakpassword");
 
         // far away in another part of the code
-        assertThat(user.toString()).isEqualTo("User(login=stemlaur, password=myweakpassword)");
+        assertThat(user.toString()).isEqualTo("User{login='stemlaur', password='myweakpassword'}");
         System.out.println("Ouups the client accidentally logged the user and its password : " + user);
     }
 
     @Test
     void nullInputAreAccepted() {
         User user = new User(null, null);
-        assertThat(user.toString()).isEqualTo("User(login=null, password=null)");
+        assertThat(user.toString()).isEqualTo("User{login='null', password='null'}");
 
-        // far away in another part of the code
+        // far away in another part of the codegit
         System.out.println(user.getLogin().toUpperCase());
     }
 

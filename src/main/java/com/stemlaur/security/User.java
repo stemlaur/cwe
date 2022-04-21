@@ -1,7 +1,5 @@
 package com.stemlaur.security;
 
-import lombok.Value;
-
 /**
  * This class has 4 security problems.
  *
@@ -13,9 +11,29 @@ import lombok.Value;
  * - CWE-476 - NULL Pointer Dereference https://cwe.mitre.org/data/definitions/476.html
  * - CWE-522 - Insufficiently Protected Credentials https://cwe.mitre.org/data/definitions/522.html
  */
-@Value
 public class User {
-    String login;
-    String password;
+    private final String login;
+    private final String password;
+
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
 
