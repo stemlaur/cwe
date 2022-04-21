@@ -20,7 +20,7 @@ class UserTest {
         User user = new User(null, null);
         assertThat(user.toString()).isEqualTo("User{login='null', password='null'}");
 
-        // far away in another part of the codegit
+        // far away in another part of the code
         System.out.println(user.getLogin().toUpperCase());
     }
 
