@@ -12,7 +12,7 @@ class UserTest {
 
         // far away in another part of the code
         assertThat(user.toString()).isEqualTo("User{login='stemlaur', password='myweakpassword'}");
-        System.out.println("Ouups the client accidentally logged the user and its password : " + user);
+        System.out.println("Ouups the client accidentally logged the user login and its password : " + user);
     }
 
     @Test
