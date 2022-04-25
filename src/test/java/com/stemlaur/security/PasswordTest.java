@@ -1,5 +1,7 @@
 package com.stemlaur.security;
 
+import com.stemlaur.security.Password.InvalidPassword;
+import com.stemlaur.security.Password.PasswordAlreadyConsumed;
 import org.apache.commons.lang3.NotImplementedException;
 import org.junit.jupiter.api.Test;
 
@@ -38,19 +40,19 @@ class PasswordTest {
     @Test
     void shouldFailWithImproperLength() {
         assertThatThrownBy(() -> new Password("toosimple".toCharArray()))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(InvalidPassword.class)
                 .hasMessage("password length must be between 10 and 100 chars");
 
         final String inputTooLong = new String(new char[101]).replace('\0', ' ');
         assertThatThrownBy(() -> new Password(inputTooLong.toCharArray()))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(InvalidPassword.class)
                 .hasMessage("password length must be between 10 and 100 chars");
     }
 
     @Test
     void shouldFailWithPasswordValueTooSimple() {
         assertThatThrownBy(() -> new Password("weekPassword".toCharArray()))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(InvalidPassword.class)
                 .hasMessage("Illegal password format, does not respect policy");
     }
 
@@ -60,7 +62,7 @@ class PasswordTest {
         password.value(); // read-once
 
         assertThatThrownBy(password::value)
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(PasswordAlreadyConsumed.class)
                 .hasMessage("Password value has already been consumed");
     }
 
