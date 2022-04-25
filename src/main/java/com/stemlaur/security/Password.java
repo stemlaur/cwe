@@ -71,8 +71,7 @@ public final class Password implements Externalizable {
     }
 
     private static void deny() {
-        throw new UnsupportedOperationException(
-                "Serialization or de-serialization of passwords is not allowed");
+        throw new UnsupportedOperationException("Serialization or de-serialization of passwords is not allowed");
     }
 
     private static char[] validate(final char[] value) {
