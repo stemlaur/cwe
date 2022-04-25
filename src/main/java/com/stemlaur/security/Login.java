@@ -8,8 +8,8 @@ import static org.apache.commons.lang3.Validate.notNull;
  * Validation should be executed in the following order:
  * <p>
  * - Length check: Is the input length within the expected boundaries?
- * - Lexical content chec: Does the input contain the right characters and encoding?
- * - Syntax chec: Is the input format right?
+ * - Lexical content check: Does the input contain the right characters and encoding?
+ * - Syntax check: Is the input format right?
  */
 public final class Login { // Domain primitive (or value object) representing a Login
     private final String value;

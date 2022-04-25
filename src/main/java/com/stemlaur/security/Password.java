@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.regex.Pattern;
 
 import static org.apache.commons.lang3.Validate.notNull;
-import static org.apache.commons.lang3.Validate.validState;
 
 /**
  * Password is called a **Read-once object** : a read-once object is, as the name implies, an object designed to be read once.
@@ -20,15 +19,15 @@ import static org.apache.commons.lang3.Validate.validState;
  * <p>
  * Often this object is a domain primitive, but you can apply this pattern to both entities and aggregates as well. The basic idea is that once the object has been created, it’s only possible to retrieve the data it encapsulates **once**. Trying to retrieve it more than once results in an error. The object also makes a reasonable effort to prevent the sensitive data from being extracted through serialization :
  * <p>
- * - The password object implements the java.io.Externalizable interface and always throws an exception in order to prevent accidental serialization.
- * An Externalizable class is one which handles its own Serialization and deserialization.
+ * - The password object implements the {@link Externalizable} interface and always throws an exception in order to prevent accidental serialization.
+ * An {@link Externalizable} class is one which handles its own Serialization and deserialization.
  * During deserialization, the first step in the process is a default instantiation using the class' no-argument constructor.
- * Therefore an Externalizable class without a no-arg constructor cannot be deserialized.
+ * Therefore, an Externalizable class without a no-arg constructor cannot be deserialized.
  * <p>
  * https://www.baeldung.com/java-externalizable
  * <p>
  * - The value field is declared transient in case some library uses field access to serialize the object rather than Java serialization (but still honors the transient keyword).
- * - As a last measure, the toString method is implemented so it doesn’t output the actual value.
+ * - As a last measure, the toString method is implemented so, it does not output the actual value.
  * <p>
  * This class avoids CWE-522 - Insufficiently Protected Credentials
  */
