@@ -1,5 +1,6 @@
 package com.stemlaur.security;
 
+import com.stemlaur.security.Login.InvalidLogin;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
@@ -30,13 +31,13 @@ class LoginTest {
     @Test
     void shouldFailWithImproperLength() {
         assertThatThrownBy(() -> new Login("a"))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(InvalidLogin.class)
                 .hasMessage("login length must be between 3 and 20 chars");
 
         final String inputTooLong = new String(new char[21]).replace('\0', ' ');
 
         assertThatThrownBy(() -> new Login(inputTooLong))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(InvalidLogin.class)
                 .hasMessage("login length must be between 3 and 20 chars");
     }
 
@@ -56,6 +57,8 @@ class LoginTest {
                         "<script",
                         "</script>"
                 )
-                .map(input -> dynamicTest("ShouldFailWithMaliciousInput: " + input, () -> assertThrows(RuntimeException.class, () -> new Login(input))));
+                .map(input -> dynamicTest("ShouldFailWithMaliciousInput: " + input, () -> assertThatThrownBy(() -> new Login(input))
+                        .isInstanceOf(InvalidLogin.class)
+                        .hasMessage("Illegal login format, expecting only letters")));
     }
 }
