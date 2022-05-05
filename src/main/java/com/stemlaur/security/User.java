@@ -3,13 +3,13 @@ package com.stemlaur.security;
 /**
  * This class has 4 security problems.
  *
- * See https://cwe.mitre.org/top25/archive/2021/2021_cwe_top25.html
+ * See <a href="https://cwe.mitre.org/top25/archive/2021/2021_cwe_top25.html">https://cwe.mitre.org/top25/archive/2021/2021_cwe_top25.html</a>
  *
  * <p>
- * - CWE-79 - Cross-site Scripting https://cwe.mitre.org/data/definitions/79.html
- * - CWE-20 - Improper Input Validation https://cwe.mitre.org/data/definitions/20.html
- * - CWE-476 - NULL Pointer Dereference https://cwe.mitre.org/data/definitions/476.html
- * - CWE-522 - Insufficiently Protected Credentials https://cwe.mitre.org/data/definitions/522.html
+ * - CWE-79 - Cross-site Scripting <a href="https://cwe.mitre.org/data/definitions/79.html">https://cwe.mitre.org/data/definitions/79.html</a>
+ * - CWE-20 - Improper Input Validation <a href="https://cwe.mitre.org/data/definitions/20.html">https://cwe.mitre.org/data/definitions/20.html</a>
+ * - CWE-476 - NULL Pointer Dereference <a href="https://cwe.mitre.org/data/definitions/476.html">https://cwe.mitre.org/data/definitions/476.html</a>
+ * - CWE-522 - Insufficiently Protected Credentials <a href="https://cwe.mitre.org/data/definitions/522.html">https://cwe.mitre.org/data/definitions/522.html</a>
  */
 public class User {
     private final String login;
