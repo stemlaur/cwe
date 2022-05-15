@@ -15,6 +15,12 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 class LoginTest {
 
     @Test
+    void shouldPrintCorrectOutput() {
+        Login stemlaur = validUser();
+        assertThat(stemlaur.toString()).isEqualTo("Login{value='stemlaur'}");
+    }
+
+    @Test
     void shouldReturnValue() {
         Login stemlaur = validUser();
         assertThat(stemlaur.value()).isEqualTo("stemlaur");

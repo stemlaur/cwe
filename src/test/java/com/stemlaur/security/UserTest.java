@@ -8,6 +8,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class UserTest {
+    @Test
+    void shouldPrintCorrectOutput() {
+        User user = new User(validUser(), validPassword());
+        assertThat(user.toString()).isEqualTo("User{login=Login{value='stemlaur'}, password=Password{value=*****}}");
+    }
 
     @Test
     void shouldInstantiateProperUser() {
